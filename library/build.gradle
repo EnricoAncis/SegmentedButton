@@ -54,7 +54,7 @@ configurations {
 task javadoc(type: Javadoc) {
     failOnError false
     source = files('src/main/java')
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.javadocDeps
+    classpath += files(android.getBootClasspath()) + configurations.javadocDeps
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {

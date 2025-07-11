@@ -3,4 +3,3 @@ jdk:
 
 install:
   - ./gradlew :library:assembleRelease
-  - ./gradlew :library:publishReleasePublicationToMavenRepository

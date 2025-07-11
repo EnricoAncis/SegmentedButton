@@ -73,12 +73,20 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                // Usa il componente 'default' per Android library
-                from components.findByName("release")
+                // Qui garantisci che venga pubblicato l'AAR
+                afterEvaluate {
+                    from components.findByName("release")
+                }
 
                 groupId = 'com.github.EnricoAncis'
                 artifactId = 'SegmentedButton'
                 version = '3.0.0-fixed12'
+            }
+        }
+
+        repositories {
+            maven {
+                url = uri("$buildDir/repo") // obbligatorio per JitPack
             }
         }
     }

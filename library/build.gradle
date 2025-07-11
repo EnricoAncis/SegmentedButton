@@ -69,13 +69,17 @@ dependencies {
     implementation 'androidx.interpolator:interpolator:1.0.0'
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            from components.release
-            groupId = 'com.github.EnricoAncis'
-            artifactId = 'SegmentedButton'
-            version = '3.0.0-fixed9'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // Usa il componente 'default' per Android library
+                from components.findByName("release")
+
+                groupId = 'com.github.EnricoAncis'
+                artifactId = 'SegmentedButton'
+                version = '3.0.0-fixed12'
+            }
         }
     }
 }

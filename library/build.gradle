@@ -79,8 +79,7 @@ afterEvaluate {
         }
     }
 
-    // Assicura che venga creato l’AAR prima della pubblicazione
-    tasks.named("publishReleasePublicationToJitpackRepository").configure {
+    tasks.named("publish").configure {
         dependsOn tasks.named("assembleRelease")
     }
 }

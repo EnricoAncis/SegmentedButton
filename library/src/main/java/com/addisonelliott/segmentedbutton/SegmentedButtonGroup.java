@@ -288,7 +288,7 @@ public class SegmentedButtonGroup extends LinearLayout
         // Dash width and gap, if the dash width is not zero will make the border dashed with a ratio between dash
         // width and gap
         borderWidth = ta.getDimensionPixelSize(R.styleable.SegmentedButtonGroup_borderWidth, 0);
-        borderColor = ta.getColor(R.styleable.SegmentedButtonGroup_borderColor, Color.BLACK);
+        borderColor = ta.getColor(R.styleable.SegmentedButtonGroup_segmentedBorderColor, Color.BLACK);
         borderDashWidth = ta.getDimensionPixelSize(R.styleable.SegmentedButtonGroup_borderDashWidth, 0);
         borderDashGap = ta.getDimensionPixelSize(R.styleable.SegmentedButtonGroup_borderDashGap, 0);
 
@@ -300,7 +300,7 @@ public class SegmentedButtonGroup extends LinearLayout
         // Same defaults as the border above, however this border information will be passed to each button so that
         // the correct border can be rendered around the selected button
         selectedBorderWidth = ta.getDimensionPixelSize(R.styleable.SegmentedButtonGroup_selectedBorderWidth, 0);
-        selectedBorderColor = ta.getColor(R.styleable.SegmentedButtonGroup_selectedBorderColor, Color.BLACK);
+        selectedBorderColor = ta.getColor(R.styleable.SegmentedButtonGroup_segmentedSelectedBorderColor, Color.BLACK);
         selectedBorderDashWidth = ta.getDimensionPixelSize(R.styleable.SegmentedButtonGroup_selectedBorderDashWidth, 0);
         selectedBorderDashGap = ta.getDimensionPixelSize(R.styleable.SegmentedButtonGroup_selectedBorderDashGap, 0);
 

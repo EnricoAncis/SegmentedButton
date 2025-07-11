@@ -47,24 +47,19 @@ configurations {
     javadocDeps {
         canBeResolved = true
         canBeConsumed = false
-        extendsFrom configurations.api.setCanBeResolved(true)
+        extendsFrom configurations.implementation
     }
 }
 
 task javadoc(type: Javadoc) {
     failOnError false
     source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.implementation
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.javadocDeps
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     archiveClassifier.set('javadoc')
     from javadoc.destinationDir
-}
-
-afterEvaluate {
-    println "Project name: ${project.getName()}"
-    println "AAR path: $buildDir/outputs/aar/SegmentedButton-release.aar"
 }
 
 afterEvaluate {
@@ -75,7 +70,7 @@ afterEvaluate {
                 artifactId = 'SegmentedButton'
                 version = '3.0.0-fixed14'
 
-                artifact("$buildDir/outputs/aar/SegmentedButton-release.aar")
+                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
                 artifact sourcesJar
                 artifact javadocJar
             }

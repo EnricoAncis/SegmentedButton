@@ -63,9 +63,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 afterEvaluate {
-    def aarPath = file("$buildDir/outputs/aar/${project.getName()}-release.aar")
-    println "🔧 AAR path: $aarPath"
-    println "📦 AAR esiste? " + aarPath.exists()
+    def aarPath = file("$buildDir/outputs/aar/${project.name}-release.aar")
 
     publishing {
         publications {
@@ -79,15 +77,9 @@ afterEvaluate {
                 artifact javadocJar
             }
         }
-
-        repositories {
-            maven {
-                name = "jitpack"
-                url = uri("$buildDir/repo")
-            }
-        }
     }
 
+    // Assicura che venga creato l’AAR prima della pubblicazione
     tasks.named("publishReleasePublicationToJitpackRepository").configure {
         dependsOn tasks.named("assembleRelease")
     }

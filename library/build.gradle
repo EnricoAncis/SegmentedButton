@@ -53,7 +53,7 @@ configurations {
 
 task javadoc(type: Javadoc) {
     failOnError false
-    source = android.sourceSets.main.java.srcDirs
+    source = files('src/main/java')
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.javadocDeps
 }
 

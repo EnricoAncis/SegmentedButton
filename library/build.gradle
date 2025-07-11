@@ -70,7 +70,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.EnricoAncis'
                 artifactId = 'SegmentedButton'
-                version = '3.0.0-fixed14'
+                version = '3.0.0-fixed30'
 
                 artifact aarPath
                 artifact sourcesJar

@@ -77,9 +77,18 @@ afterEvaluate {
                 artifact javadocJar
             }
         }
+
+        // ⚠️ Questo serve solo a far creare a Gradle il task che JitPack cerca
+        repositories {
+            maven {
+                name = "jitpack"
+                url = uri("$buildDir/repo")
+            }
+        }
     }
 
-    tasks.named("publish").configure {
+    // ✅ JitPack cerca questo task specifico
+    tasks.named("publishReleasePublicationToJitpackRepository").configure {
         dependsOn tasks.named("assembleRelease")
     }
 }

@@ -63,6 +63,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 afterEvaluate {
+    println "Project name: ${project.getName()}"
+    println "AAR path: $buildDir/outputs/aar/SegmentedButton-release.aar"
+}
+
+afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
@@ -70,7 +75,7 @@ afterEvaluate {
                 artifactId = 'SegmentedButton'
                 version = '3.0.0-fixed14'
 
-                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                artifact("$buildDir/outputs/aar/SegmentedButton-release.aar")
                 artifact sourcesJar
                 artifact javadocJar
             }

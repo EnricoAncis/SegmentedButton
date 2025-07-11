@@ -63,6 +63,10 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 afterEvaluate {
+    def aarPath = file("$buildDir/outputs/aar/${project.getName()}-release.aar")
+    println "🔧 AAR path: $aarPath"
+    println "📦 AAR esiste? " + aarPath.exists()
+
     publishing {
         publications {
             release(MavenPublication) {
@@ -70,7 +74,7 @@ afterEvaluate {
                 artifactId = 'SegmentedButton'
                 version = '3.0.0-fixed14'
 
-                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                artifact aarPath
                 artifact sourcesJar
                 artifact javadocJar
             }
@@ -82,5 +86,9 @@ afterEvaluate {
                 url = uri("$buildDir/repo")
             }
         }
+    }
+
+    tasks.named("publishReleasePublicationToJitpackRepository").configure {
+        dependsOn tasks.named("assembleRelease")
     }
 }

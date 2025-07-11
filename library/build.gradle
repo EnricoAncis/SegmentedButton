@@ -4,6 +4,8 @@ apply plugin: 'maven-publish'
 group='com.github.addisonelliott'
 
 android {
+    namespace 'com.addisonelliott.segmentedbutton' 
+    
     compileSdkVersion 34
     //buildToolsVersion rootProject.buildToolsVersion
 

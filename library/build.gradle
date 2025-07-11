@@ -47,7 +47,7 @@ configurations {
     javadocDeps {
         canBeResolved = true
         canBeConsumed = false
-        extendsFrom configurations.implementation
+        extendsFrom configurations.compileClasspath
     }
 }
 

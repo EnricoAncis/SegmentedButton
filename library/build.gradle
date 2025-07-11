@@ -58,12 +58,11 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
-
                 groupId = 'com.github.EnricoAncis'
                 artifactId = 'SegmentedButton'
-                version = '3.0.0-fixed13'
+                version = '3.0.0-fixed14'
 
+                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
                 artifact sourcesJar
                 artifact javadocJar
             }
@@ -72,7 +71,7 @@ afterEvaluate {
         repositories {
             maven {
                 name = "jitpack"
-                url = uri("$buildDir/repo") 
+                url = uri("$buildDir/repo")
             }
         }
     }

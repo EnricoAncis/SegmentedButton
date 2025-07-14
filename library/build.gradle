@@ -58,8 +58,4 @@ afterEvaluate {
             }
         }
     }
-
-    tasks.matching { it.name == "publishReleasePublicationToJitpackRepository" }.configureEach {
-        dependsOn tasks.named("assembleRelease")
-    }
 }

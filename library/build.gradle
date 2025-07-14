@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
+    namespace 'com.addisonelliott.segmentedbutton'
+    
     compileSdkVersion 34
     defaultConfig {
         minSdkVersion 21
@@ -48,12 +50,14 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.EnricoAncis'
                 artifactId = 'SegmentedButton'
-                version = '3.0.0-fixed37'
+                version = '3.0.0-fixed35'
+
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
                 artifact sourcesJar
                 artifact javadocJar
             }
         }
+
         repositories {
             maven {
                 name = "jitpack"
@@ -61,8 +65,8 @@ afterEvaluate {
             }
         }
     }
-}
 
-tasks.matching { it.name == "publishReleasePublicationToJitpackRepository" }.all {
-    dependsOn tasks.named("assembleRelease")
+    tasks.matching { it.name == "publishReleasePublicationToJitpackRepository" }.configureEach {
+        dependsOn tasks.named("assembleRelease")
+    }
 }

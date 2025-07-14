@@ -85,3 +85,9 @@ afterEvaluate {
         }
     }
 }
+
+tasks.whenTaskAdded {
+    if (name == "publishReleasePublicationToJitpackRepository") {
+        dependsOn("assembleRelease")
+    }
+}

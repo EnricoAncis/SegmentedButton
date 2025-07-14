@@ -19,11 +19,14 @@ android {
         }
     }
 
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
+   publishing {
+        singleVariant("release")
     }
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
 }
 
 afterEvaluate {
@@ -32,10 +35,10 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.EnricoAncis'
                 artifactId = 'SegmentedButton'
-                version = '3.0.0-fixed43'
+                version = '3.0.0-fixed44'
 
                 artifact("$buildDir/outputs/aar/library-release.aar")
-                artifact tasks.named("sourcesJar").get()
+                artifact(sourcesJar)
             }
         }
     }

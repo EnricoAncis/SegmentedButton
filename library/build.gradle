@@ -63,31 +63,32 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 afterEvaluate {
+    def aarPath = "$buildDir/outputs/aar/library-release.aar"
+    println(">>> AAR path expected: $aarPath")
+
     publishing {
         publications {
             release(MavenPublication) {
                 groupId = 'com.github.EnricoAncis'
                 artifactId = 'SegmentedButton'
-                version = 'v3.0.0-fixed35'
+                version = '3.0.0-fixed35'
 
-                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+                artifact(aarPath)
                 artifact sourcesJar
                 artifact javadocJar
             }
         }
-
         repositories {
-            // Questo nome è cruciale: serve per far funzionare il publish su JitPack
             maven {
                 name = "jitpack"
                 url = uri("file://${buildDir}/repo")
             }
         }
     }
-}
 
-tasks.whenTaskAdded {
-    if (name == "publishReleasePublicationToJitpackRepository") {
-        dependsOn("assembleRelease")
+    tasks.whenTaskAdded {
+        if (name == "publishReleasePublicationToJitpackRepository") {
+            dependsOn("assembleRelease")
+        }
     }
 }
